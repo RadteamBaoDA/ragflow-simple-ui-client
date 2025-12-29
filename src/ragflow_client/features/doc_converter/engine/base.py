@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from ragflow_client.features.doc_converter.converter_config import (
+    from ragflow_client.features.doc_converter.config import (
         ExcelPrintConfig,
         PowerPointConfig,
         WordConfig,

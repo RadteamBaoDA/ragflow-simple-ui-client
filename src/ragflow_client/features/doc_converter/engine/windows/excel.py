@@ -31,7 +31,7 @@ from loguru import logger
 from ragflow_client.features.doc_converter.engine.base import ConversionResult
 
 if TYPE_CHECKING:
-    from ragflow_client.features.doc_converter.converter_config import (
+    from ragflow_client.features.doc_converter.config import (
         ExcelPrintConfig,
         MarginType,
         ScalingMode,
@@ -133,7 +133,7 @@ class WindowsExcelConverter:
     
     def _get_margin_inches(self, margin_type: "MarginType") -> tuple[float, float, float, float]:
         """Get margin values for a preset."""
-        from ragflow_client.features.doc_converter.converter_config import MarginType
+        from ragflow_client.features.doc_converter.config import MarginType
         
         presets = {
             MarginType.NORMAL: (0.75, 0.75, 0.7, 0.7),
@@ -183,7 +183,7 @@ class WindowsExcelConverter:
         
         try:
             import win32com.client
-            from ragflow_client.features.doc_converter.converter_config import (
+            from ragflow_client.features.doc_converter.config import (
                 MarginType,
                 Orientation,
                 ScalingMode,

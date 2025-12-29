@@ -31,7 +31,7 @@ from loguru import logger  # Structured logging
 from ragflow_client.features.doc_converter.engine.base import ConversionResult
 
 if TYPE_CHECKING:
-    from ragflow_client.features.doc_converter.converter_config import (
+    from ragflow_client.features.doc_converter.config import (
         MarginType,
         WordConfig,
     )
@@ -178,7 +178,7 @@ class WindowsWordConverter:
         Returns:
             Tuple of (top, bottom, left, right) margins in inches.
         """
-        from ragflow_client.features.doc_converter.converter_config import MarginType
+        from ragflow_client.features.doc_converter.config import MarginType
         
         # Map margin presets to values (in inches)
         # These match Word's File > Page Setup > Margins presets
@@ -238,7 +238,7 @@ class WindowsWordConverter:
         try:
             # Import Windows COM library
             import win32com.client
-            from ragflow_client.features.doc_converter.converter_config import (
+            from ragflow_client.features.doc_converter.config import (
                 MarginType,
                 Orientation,
             )

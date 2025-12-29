@@ -33,7 +33,7 @@ from ragflow_client.features.doc_converter.engine.linux.excel import LinuxExcelC
 from ragflow_client.features.doc_converter.engine.linux.powerpoint import LinuxPowerPointConverter
 
 if TYPE_CHECKING:
-    from ragflow_client.features.doc_converter.converter_config import (
+    from ragflow_client.features.doc_converter.config import (
         ExcelPrintConfig,
         PowerPointConfig,
         WordConfig,

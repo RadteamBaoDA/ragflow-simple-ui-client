@@ -69,17 +69,14 @@ excel:
   # names: null means this is the default config for all unmatched sheets
   sheets:
     - priority: 1
-      names: ["Summary", "Dashboard", "Overview"]
+      names: ["Cover", "Tracking Changes"]
       scaling: fit_sheet
       mode: one_page
-    - priority: 2
-      names: ["Data*", "Raw*"]  # Wildcard matching supported
-      rows_per_page: 50
-      scaling: fit_columns
     - priority: 99
       names: null               # Default config for all unmatched sheets
       scaling: fit_columns
       mode: screen_optimized
+      rows_per_page: 5
 
 # PowerPoint Print Options (based on Microsoft Office documentation)
 powerpoint:

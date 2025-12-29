@@ -17,7 +17,7 @@ from typing import TYPE_CHECKING
 from loguru import logger
 
 if TYPE_CHECKING:
-    from ragflow_client.features.doc_converter.converter_config import SuffixConfig
+    from ragflow_client.features.doc_converter.config import SuffixConfig
 
 
 class FileType(str, Enum):

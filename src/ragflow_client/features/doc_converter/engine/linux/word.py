@@ -29,7 +29,7 @@ from ragflow_client.features.doc_converter.engine.base import ConversionResult
 # TYPE_CHECKING is True only when running type checkers (like mypy),
 # not at runtime. This avoids circular imports for type hints.
 if TYPE_CHECKING:
-    from ragflow_client.features.doc_converter.converter_config import WordConfig
+    from ragflow_client.features.doc_converter.config import WordConfig
 
 
 class LinuxWordConverter:

@@ -28,7 +28,7 @@ from ragflow_client.features.doc_converter.engine.base import ConversionResult
 
 # Import config type only for type checking (avoids circular imports)
 if TYPE_CHECKING:
-    from ragflow_client.features.doc_converter.converter_config import ExcelPrintConfig
+    from ragflow_client.features.doc_converter.config import ExcelPrintConfig
 
 
 class LinuxExcelConverter:

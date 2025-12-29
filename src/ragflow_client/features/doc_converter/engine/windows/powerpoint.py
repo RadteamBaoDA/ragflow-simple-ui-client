@@ -26,7 +26,7 @@ from loguru import logger
 from ragflow_client.features.doc_converter.engine.base import ConversionResult
 
 if TYPE_CHECKING:
-    from ragflow_client.features.doc_converter.converter_config import PowerPointConfig
+    from ragflow_client.features.doc_converter.config import PowerPointConfig
 
 
 # ============================================================================

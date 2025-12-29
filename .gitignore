@@ -157,3 +157,4 @@ cython_debug/
 input/
 output/
 logs/
+src/ragflow_client/cli/__pycache__/commands.cpython-312.pyc

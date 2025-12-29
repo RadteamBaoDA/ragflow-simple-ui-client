@@ -35,6 +35,20 @@ ragflow stop
 ragflow config
 ```
 
+## Document Conversion
+
+The client includes a standalone CLI for batch converting Office documents to PDF:
+
+```bash
+# Using developmemt script
+python src/main.py convert ./input --output ./output
+
+# Using python module
+python -m ragflow_client convert ./input --output ./output
+```
+
+For detailed options and prerequisites, see the [Converter Guide](CONVERTER_GUIDE.md).
+
 ## Configuration
 
 Create a `.env` file based on `.env.example`:

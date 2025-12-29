@@ -208,20 +208,22 @@ def convert(
     input_dir: Annotated[
         Path,
         typer.Argument(
-            help="Input directory containing Office documents",
-            exists=True,
+            help="Input directory containing Office documents (default: ./input)",
             file_okay=False,
             dir_okay=True,
             resolve_path=True,
         ),
-    ],
+    ] = Path("./input"),
     output_dir: Annotated[
-        Optional[Path],
+        Path,
         typer.Option(
             "--output", "-o",
             help="Output directory for PDFs (default: ./output)",
+            file_okay=False,
+            dir_okay=True,
+            resolve_path=True,
         ),
-    ] = None,
+    ] = Path("./output"),
     config_file: Annotated[
         Optional[Path],
         typer.Option(
@@ -297,19 +299,20 @@ def convert(
         raise typer.Exit(1)
     
     # Discover files
+    if not input_dir.exists():
+        print_info(f"Input directory does not exist, creating: {input_dir}")
+        input_dir.mkdir(parents=True, exist_ok=True)
+        
     print_info(f"Scanning {input_dir}...")
     files = discover_files(input_dir)
     
     if not files:
-        print_warning("No Office documents found")
+        print_warning(f"No Office documents found in {input_dir}")
         raise typer.Exit(0)
     
     print_success(f"Found {len(files)} documents")
     
     # Setup output
-    if output_dir is None:
-        output_dir = PathLib("./output")
-    
     output_manager = OutputManager(
         input_dir=input_dir,
         output_dir=output_dir,
