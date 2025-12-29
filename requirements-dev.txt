@@ -1,4 +1,4 @@
-# RAGFlow Client - Development Dependencies
+# Simple UI Client - Development Dependencies
 # Install with: pip install -r requirements-dev.txt
 
 # Include production dependencies

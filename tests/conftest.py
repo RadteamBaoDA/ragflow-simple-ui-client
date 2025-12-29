@@ -1,8 +1,8 @@
 import pytest
 import asyncio
 from pathlib import Path
-from ragflow_client.core.bus import EventBus
-from ragflow_client.utils.config import Settings
+from simple_ui_client.core.bus import EventBus
+from simple_ui_client.utils.config import Settings
 
 @pytest.fixture
 def event_bus():
@@ -18,7 +18,7 @@ def temp_dir(tmp_path):
 def settings(temp_dir):
     """Basic settings fixture."""
     return Settings(
-        ragflow_home=temp_dir / ".ragflow",
+        simple_ui_home=temp_dir / ".simple-ui",
         websocket_url="http://localhost:5000",
         websocket_api_key="test_key"
     )

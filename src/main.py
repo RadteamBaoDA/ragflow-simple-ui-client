@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Development entry point for RAGFlow Client.
+Development entry point for Simple UI Client.
 
 This script allows running the CLI directly during development without
 needing to install the package first.
@@ -29,7 +29,7 @@ if str(src_dir) not in sys.path:
     sys.path.insert(0, str(src_dir))
 
 # Import and run the CLI application
-from ragflow_client.cli.commands import app
+from simple_ui_client.cli.commands import app
 
 if __name__ == "__main__":
     app()

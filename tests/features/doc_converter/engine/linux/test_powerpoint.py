@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch, MagicMock
 from pathlib import Path
-from ragflow_client.features.doc_converter.engine.linux.powerpoint import LinuxPowerPointConverter
+from simple_ui_client.features.doc_converter.engine.linux.powerpoint import LinuxPowerPointConverter
 
 @pytest.fixture
 def converter():

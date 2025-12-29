@@ -19,13 +19,13 @@ def mock_win32_env():
 
 @pytest.fixture
 def converter():
-    if "ragflow_client.features.doc_converter.engine.windows.excel" in sys.modules:
-        del sys.modules["ragflow_client.features.doc_converter.engine.windows.excel"]
-    from ragflow_client.features.doc_converter.engine.windows.excel import WindowsExcelConverter
+    if "simple_ui_client.features.doc_converter.engine.windows.excel" in sys.modules:
+        del sys.modules["simple_ui_client.features.doc_converter.engine.windows.excel"]
+    from simple_ui_client.features.doc_converter.engine.windows.excel import WindowsExcelConverter
     return WindowsExcelConverter()
 
 def test_windows_excel_convert_success(converter):
-    from ragflow_client.features.doc_converter.config import Orientation, MarginType, ScalingMode
+    from simple_ui_client.features.doc_converter.config import Orientation, MarginType, ScalingMode
     
     source = Path("test.xlsx")
     target = Path("test.pdf")

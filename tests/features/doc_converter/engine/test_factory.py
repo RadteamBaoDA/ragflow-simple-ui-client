@@ -1,18 +1,18 @@
 import sys
 from unittest.mock import patch, MagicMock
 import pytest
-from ragflow_client.features.doc_converter.engine.factory import get_converter, get_converter_info
+from simple_ui_client.features.doc_converter.engine.factory import get_converter, get_converter_info
 
 def test_get_converter_windows():
     with patch("sys.platform", "win32"):
-        with patch("ragflow_client.features.doc_converter.engine.windows.WindowsConverter") as mock_conv:
+        with patch("simple_ui_client.features.doc_converter.engine.windows.WindowsConverter") as mock_conv:
             conv = get_converter()
             assert conv == mock_conv.return_value
 
 def test_get_converter_linux():
     for platform in ["linux", "linux2", "darwin"]:
         with patch("sys.platform", platform):
-            with patch("ragflow_client.features.doc_converter.engine.linux.LinuxConverter") as mock_conv:
+            with patch("simple_ui_client.features.doc_converter.engine.linux.LinuxConverter") as mock_conv:
                 conv = get_converter()
                 assert conv == mock_conv.return_value
 

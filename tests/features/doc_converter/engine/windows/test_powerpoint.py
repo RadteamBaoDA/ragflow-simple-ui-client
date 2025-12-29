@@ -17,9 +17,9 @@ def mock_win32_env():
 
 @pytest.fixture
 def converter():
-    if "ragflow_client.features.doc_converter.engine.windows.powerpoint" in sys.modules:
-        del sys.modules["ragflow_client.features.doc_converter.engine.windows.powerpoint"]
-    from ragflow_client.features.doc_converter.engine.windows.powerpoint import WindowsPowerPointConverter
+    if "simple_ui_client.features.doc_converter.engine.windows.powerpoint" in sys.modules:
+        del sys.modules["simple_ui_client.features.doc_converter.engine.windows.powerpoint"]
+    from simple_ui_client.features.doc_converter.engine.windows.powerpoint import WindowsPowerPointConverter
     return WindowsPowerPointConverter()
 
 def test_windows_powerpoint_convert_success(converter):

@@ -1,5 +1,5 @@
 from pathlib import Path
-from ragflow_client.features.doc_converter.engine.base import ConversionResult
+from simple_ui_client.features.doc_converter.engine.base import ConversionResult
 
 def test_conversion_result_defaults():
     source = Path("input.docx")

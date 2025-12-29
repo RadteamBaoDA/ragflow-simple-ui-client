@@ -1,10 +1,10 @@
-# RAGFlow Client
+# Simple UI Client
 
-A modern, cross-platform background agent for RAGFlow.
+A modern, cross-platform background agent for Simple UI.
 
 ## Features
 
-- **Socket.IO Connection**: Real-time bi-directional communication with RAGFlow backend
+- **Socket.IO Connection**: Real-time bi-directional communication with Simple UI backend
 - **Event-Driven Architecture**: Internal async event bus for decoupled feature logic
 - **Document Conversion**: Built-in micro-service for document processing
 - **Cross-Platform Daemon**: Background execution on Windows, macOS, and Linux
@@ -20,19 +20,19 @@ pip install -e .
 
 ```bash
 # Start the daemon in background
-ragflow start
+simple-client start
 
 # Run in foreground (debug mode)
-ragflow run
+simple-client run
 
 # Check status
-ragflow status
+simple-client status
 
 # Stop the daemon
-ragflow stop
+simple-client stop
 
 # Show configuration
-ragflow config
+simple-client config
 ```
 
 ## Document Conversion
@@ -44,7 +44,7 @@ The client includes a standalone CLI for batch converting Office documents to PD
 python src/main.py convert ./input --output ./output
 
 # Using python module
-python -m ragflow_client convert ./input --output ./output
+python -m simple_ui_client convert ./input --output ./output
 ```
 
 For detailed options and prerequisites, see the [Converter Guide](CONVERTER_GUIDE.md).
@@ -71,7 +71,7 @@ pip install -e ".[dev]"
 pytest
 
 # Type checking
-mypy src/ragflow_client
+mypy src/simple_ui_client
 ```
 
 ## License

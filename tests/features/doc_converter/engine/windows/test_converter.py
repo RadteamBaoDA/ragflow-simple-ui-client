@@ -1,13 +1,13 @@
 import pytest
 from unittest.mock import MagicMock, patch
 from pathlib import Path
-from ragflow_client.features.doc_converter.engine.windows.converter import WindowsConverter
+from simple_ui_client.features.doc_converter.engine.windows.converter import WindowsConverter
 
 @pytest.fixture
 def converter():
-    with patch("ragflow_client.features.doc_converter.engine.windows.converter.WindowsWordConverter"), \
-         patch("ragflow_client.features.doc_converter.engine.windows.converter.WindowsExcelConverter"), \
-         patch("ragflow_client.features.doc_converter.engine.windows.converter.WindowsPowerPointConverter"):
+    with patch("simple_ui_client.features.doc_converter.engine.windows.converter.WindowsWordConverter"), \
+         patch("simple_ui_client.features.doc_converter.engine.windows.converter.WindowsExcelConverter"), \
+         patch("simple_ui_client.features.doc_converter.engine.windows.converter.WindowsPowerPointConverter"):
         return WindowsConverter()
 
 def test_windows_converter_initialize(converter):

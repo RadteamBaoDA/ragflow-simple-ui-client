@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch, MagicMock
 from pathlib import Path
-from ragflow_client.features.doc_converter.engine.linux.excel import LinuxExcelConverter
+from simple_ui_client.features.doc_converter.engine.linux.excel import LinuxExcelConverter
 
 @pytest.fixture
 def converter():

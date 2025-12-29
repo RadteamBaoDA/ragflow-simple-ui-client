@@ -1,7 +1,7 @@
 from pathlib import Path
 import pytest
 import yaml
-from ragflow_client.features.doc_converter.config.converter_config import ConverterConfig, Orientation, SheetConfig
+from simple_ui_client.features.doc_converter.config.converter_config import ConverterConfig, Orientation, SheetConfig
 
 def test_load_default_config():
     config = ConverterConfig()

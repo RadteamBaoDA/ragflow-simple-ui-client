@@ -1,9 +1,9 @@
 import asyncio
 import pytest
 from unittest.mock import MagicMock, AsyncMock
-from ragflow_client.core.bus import Event
-from ragflow_client.features.doc_converter.worker.worker import DocConverterWorker
-from ragflow_client.features.doc_converter.schema.schema import ConversionJob, JobStatus
+from simple_ui_client.core.bus import Event
+from simple_ui_client.features.doc_converter.worker.worker import DocConverterWorker
+from simple_ui_client.features.doc_converter.schema.schema import ConversionJob, JobStatus
 
 @pytest.mark.asyncio
 async def test_worker_starts_job(event_bus):

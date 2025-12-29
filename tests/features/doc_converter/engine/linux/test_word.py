@@ -2,7 +2,7 @@ import pytest
 from unittest.mock import patch, MagicMock
 from pathlib import Path
 import subprocess
-from ragflow_client.features.doc_converter.engine.linux.word import LinuxWordConverter
+from simple_ui_client.features.doc_converter.engine.linux.word import LinuxWordConverter
 
 @pytest.fixture
 def converter():

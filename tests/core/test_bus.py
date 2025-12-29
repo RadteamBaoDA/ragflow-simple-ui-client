@@ -1,6 +1,6 @@
 import asyncio
 import pytest
-from ragflow_client.core.bus import Event, EventBus
+from simple_ui_client.core.bus import Event, EventBus
 
 @pytest.mark.asyncio
 async def test_bus_publish_subscribe(event_bus):

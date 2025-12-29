@@ -1,14 +1,14 @@
 import pytest
 from unittest.mock import MagicMock, patch
 from pathlib import Path
-from ragflow_client.features.doc_converter.engine.linux.converter import LinuxConverter
+from simple_ui_client.features.doc_converter.engine.linux.converter import LinuxConverter
 
 @pytest.fixture
 def converter():
     # Patch the sub-converters to avoid actual initialization/dependencies
-    with patch("ragflow_client.features.doc_converter.engine.linux.converter.LinuxWordConverter"), \
-         patch("ragflow_client.features.doc_converter.engine.linux.converter.LinuxExcelConverter"), \
-         patch("ragflow_client.features.doc_converter.engine.linux.converter.LinuxPowerPointConverter"):
+    with patch("simple_ui_client.features.doc_converter.engine.linux.converter.LinuxWordConverter"), \
+         patch("simple_ui_client.features.doc_converter.engine.linux.converter.LinuxExcelConverter"), \
+         patch("simple_ui_client.features.doc_converter.engine.linux.converter.LinuxPowerPointConverter"):
         return LinuxConverter(libreoffice_path="test-office")
 
 def test_linux_converter_init(converter):

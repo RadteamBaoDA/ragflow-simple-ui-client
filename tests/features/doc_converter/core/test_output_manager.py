@@ -1,7 +1,7 @@
 from pathlib import Path
 import pytest
-from ragflow_client.features.doc_converter.core.output_manager import OutputManager, FileType
-from ragflow_client.features.doc_converter.config.converter_config import SuffixConfig
+from simple_ui_client.features.doc_converter.core.output_manager import OutputManager, FileType
+from simple_ui_client.features.doc_converter.config.converter_config import SuffixConfig
 
 @pytest.fixture
 def suffix_config():

@@ -1,6 +1,6 @@
-# RAGFlow Document Converter Guide
+# Simple UI Document Converter Guide
 
-The RAGFlow Client includes a powerful document conversion micro-service that can transform Office documents (Word, Excel, PowerPoint) into high-quality PDFs, preserving layout and formatting.
+The Simple UI Client includes a powerful document conversion micro-service that can transform Office documents (Word, Excel, PowerPoint) into high-quality PDFs, preserving layout and formatting.
 
 ## 1. Running in CLI Mode (Development)
 

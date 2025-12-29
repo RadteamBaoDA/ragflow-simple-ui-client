@@ -3,16 +3,16 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "ragflow-client"
+name = "simple-ui-client"
 version = "0.1.0"
-description = "A modern, cross-platform background agent for RAGFlow"
+description = "A modern, cross-platform background agent for Simple UI"
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.12"
 authors = [
-    { name = "RAGFlow Team" }
+    { name = "Simple UI Team" }
 ]
-keywords = ["ragflow", "agent", "socketio", "document-conversion"]
+keywords = ["simple-ui", "agent", "socketio", "document-conversion"]
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Environment :: Console",
@@ -44,15 +44,15 @@ dev = [
 ]
 
 [project.scripts]
-simple-client = "ragflow_client.cli.commands:app"
+simple-client = "simple_ui_client.cli.commands:app"
 
 [project.urls]
-Homepage = "https://github.com/ragflow/ragflow-client"
-Documentation = "https://github.com/ragflow/ragflow-client#readme"
-Repository = "https://github.com/ragflow/ragflow-client"
+Homepage = "https://github.com/simple-ui/simple-ui-client"
+Documentation = "https://github.com/simple-ui/simple-ui-client#readme"
+Repository = "https://github.com/simple-ui/simple-ui-client"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/ragflow_client"]
+packages = ["src/simple_ui_client"]
 
 [tool.hatch.build.targets.sdist]
 include = [

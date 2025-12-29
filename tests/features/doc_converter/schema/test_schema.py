@@ -1,7 +1,7 @@
 from pathlib import Path
 import pytest
 from uuid import UUID
-from ragflow_client.features.doc_converter.schema.schema import ConversionJob, JobStatus, JobProgress
+from simple_ui_client.features.doc_converter.schema.schema import ConversionJob, JobStatus, JobProgress
 
 def test_conversion_job_validation():
     # Valid with path

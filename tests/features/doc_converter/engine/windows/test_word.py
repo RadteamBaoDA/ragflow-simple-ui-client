@@ -20,11 +20,11 @@ def mock_win32():
 @pytest.fixture
 def converter():
     # Import inside fixture to ensure it uses the mocks
-    from ragflow_client.features.doc_converter.engine.windows.word import WindowsWordConverter
+    from simple_ui_client.features.doc_converter.engine.windows.word import WindowsWordConverter
     return WindowsWordConverter()
 
 def test_windows_word_convert_success(converter, mock_win32):
-    from ragflow_client.features.doc_converter.config import Orientation, MarginType
+    from simple_ui_client.features.doc_converter.config import Orientation, MarginType
     
     source = Path("test.docx")
     target = Path("test.pdf")
