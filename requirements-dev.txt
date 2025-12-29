@@ -1,0 +1,23 @@
+# RAGFlow Client - Development Dependencies
+# Install with: pip install -r requirements-dev.txt
+
+# Include production dependencies
+-r requirements.txt
+
+# Testing
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+pytest-cov>=4.1.0
+
+# Linting & Formatting
+ruff>=0.1.0
+
+# Type Checking
+mypy>=1.7.0
+
+# Windows COM automation (Windows only)
+pywin32>=306; sys_platform == 'win32'
+
+# Build tools (optional)
+hatchling>=1.18.0
+build>=1.0.0

@@ -1,0 +1,92 @@
+# RAGFlow Document Converter Configuration
+# Copy this file and customize for your needs
+
+# Logging Configuration
+logging:
+  level: INFO                    # DEBUG, INFO, WARNING, ERROR
+  log_dir: ./logs               # Directory for log files
+  log_console_lines: 20         # Number of log lines to show in console
+
+# Conversion Settings
+conversion:
+  workers: 4                    # Number of parallel workers
+  timeout_minutes: 30           # Timeout per file in minutes
+  keep_temp_files: false        # Keep temporary files after conversion
+  
+  # File suffix mappings for output PDFs
+  suffixes:
+    word: "_d"                  # Word documents suffix
+    excel: "_x"                 # Excel spreadsheets suffix
+    powerpoint: "_p"            # PowerPoint presentations suffix
+
+# Word Print Options (based on Microsoft Office documentation)
+word:
+  default:
+    orientation: portrait       # portrait, landscape
+    paper_size: A4              # A4, Letter, Legal, etc.
+    margins: normal             # normal, narrow, wide, custom
+    margins_custom:             # Only used when margins: custom
+      top: 1.0                  # inches
+      bottom: 1.0
+      left: 1.25
+      right: 1.25
+    fit_to_page: true
+
+# Excel Print Options (based on Microsoft Office documentation)
+excel:
+  default:
+    # Scaling options
+    scaling: fit_columns        # no_scaling, fit_sheet, fit_columns, fit_rows, custom
+    scaling_percent: 100        # Used when scaling: custom (1-400)
+    
+    # Page break controls
+    rows_per_page: null         # Auto page break every N rows (null = no auto breaks)
+    columns_per_page: null      # Auto page break every N columns
+    
+    # Margins
+    margins: normal             # normal, wide, narrow, custom
+    margins_custom:
+      top: 0.75
+      bottom: 0.75
+      left: 0.7
+      right: 0.7
+      header: 0.3
+      footer: 0.3
+    
+    # Header/Footer
+    print_header_footer: true   # Print header with sheet name and page range
+    print_row_col_headings: false  # Print row numbers and column letters
+    
+    # Print mode
+    mode: screen_optimized      # one_page, screen_optimized
+    
+    # Paper settings
+    orientation: landscape      # portrait, landscape
+    paper_size: A4
+  
+  # Sheet-specific configurations
+  # Priority: lower number = higher priority
+  # names: null means this is the default config for all unmatched sheets
+  sheets:
+    - priority: 1
+      names: ["Summary", "Dashboard", "Overview"]
+      scaling: fit_sheet
+      mode: one_page
+    - priority: 2
+      names: ["Data*", "Raw*"]  # Wildcard matching supported
+      rows_per_page: 50
+      scaling: fit_columns
+    - priority: 99
+      names: null               # Default config for all unmatched sheets
+      scaling: fit_columns
+      mode: screen_optimized
+
+# PowerPoint Print Options (based on Microsoft Office documentation)
+powerpoint:
+  default:
+    slide_size: widescreen      # widescreen (16:9), standard (4:3), custom
+    output_type: slides         # slides, handouts, notes, outline
+    handout_layout: 6           # 1, 2, 3, 4, 6, 9 slides per page (for handouts)
+    include_hidden: false       # Include hidden slides
+    frame_slides: false         # Add frame around slides
+    print_comments: false       # Print slide comments

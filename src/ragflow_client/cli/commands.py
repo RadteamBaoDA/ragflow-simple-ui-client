@@ -6,10 +6,12 @@ Provides commands for managing the background agent:
 - stop: Stop the running daemon
 - run: Run in foreground (debug mode)
 - status: Check daemon status
+- convert: Convert Office documents to PDF
 """
 
 import asyncio
 import sys
+from pathlib import Path
 from typing import Annotated, Optional
 
 import typer
@@ -22,6 +24,7 @@ from ragflow_client.cli.ui import (
     print_success,
     print_error,
     print_info,
+    print_warning,
 )
 from ragflow_client.utils.config import get_settings
 
@@ -198,6 +201,155 @@ def config() -> None:
     
     console.print()
     console.print(table)
+
+
+@app.command()
+def convert(
+    input_dir: Annotated[
+        Path,
+        typer.Argument(
+            help="Input directory containing Office documents",
+            exists=True,
+            file_okay=False,
+            dir_okay=True,
+            resolve_path=True,
+        ),
+    ],
+    output_dir: Annotated[
+        Optional[Path],
+        typer.Option(
+            "--output", "-o",
+            help="Output directory for PDFs (default: ./output)",
+        ),
+    ] = None,
+    config_file: Annotated[
+        Optional[Path],
+        typer.Option(
+            "--config", "-c",
+            help="Path to config.yaml file",
+        ),
+    ] = None,
+    workers: Annotated[
+        int,
+        typer.Option(
+            "--workers", "-w",
+            help="Number of parallel workers",
+            min=1,
+            max=32,
+        ),
+    ] = 4,
+    timeout: Annotated[
+        int,
+        typer.Option(
+            "--timeout", "-t",
+            help="Timeout per file in minutes",
+            min=1,
+            max=120,
+        ),
+    ] = 30,
+    keep_temp: Annotated[
+        bool,
+        typer.Option(
+            "--keep-temp",
+            help="Keep temporary files after conversion",
+        ),
+    ] = False,
+) -> None:
+    """Convert Office documents (Word, Excel, PowerPoint) to PDF."""
+    from pathlib import Path as PathLib
+    
+    from ragflow_client.features.doc_converter.core.prerequisite import (
+        check_prerequisites,
+        PrerequisiteError,
+    )
+    from ragflow_client.features.doc_converter.config.converter_config import ConverterConfig
+    from ragflow_client.features.doc_converter.core.output_manager import (
+        OutputManager,
+        discover_files,
+    )
+    from ragflow_client.features.doc_converter.worker.batch_worker import BatchWorker
+    from ragflow_client.features.doc_converter.ui.progress_ui import ProgressManager
+    
+    print_banner()
+    
+    # Check prerequisites
+    print_info("Checking prerequisites...")
+    try:
+        status = check_prerequisites()
+        print_success(f"Found: {status.message}")
+    except PrerequisiteError as e:
+        print_error(str(e))
+        raise typer.Exit(1)
+    
+    # Load configuration
+    print_info("Loading configuration...")
+    try:
+        config = ConverterConfig.load(config_file)
+        
+        # Override with CLI options
+        config.conversion.workers = workers
+        config.conversion.timeout_minutes = timeout
+        config.conversion.keep_temp_files = keep_temp
+        
+        print_success("Configuration loaded")
+    except Exception as e:
+        print_error(f"Failed to load config: {e}")
+        raise typer.Exit(1)
+    
+    # Discover files
+    print_info(f"Scanning {input_dir}...")
+    files = discover_files(input_dir)
+    
+    if not files:
+        print_warning("No Office documents found")
+        raise typer.Exit(0)
+    
+    print_success(f"Found {len(files)} documents")
+    
+    # Setup output
+    if output_dir is None:
+        output_dir = PathLib("./output")
+    
+    output_manager = OutputManager(
+        input_dir=input_dir,
+        output_dir=output_dir,
+        suffix_config=config.conversion.suffixes,
+        keep_temp=keep_temp,
+    )
+    
+    print_info(f"Output directory: {output_dir}")
+    
+    # Run conversion
+    try:
+        with ProgressManager(
+            total_files=len(files),
+            log_lines=config.logging.log_console_lines,
+        ) as progress:
+            worker = BatchWorker(config, progress)
+            result = asyncio.run(worker.process_batch(files, output_manager))
+        
+        # Print summary
+        console.print()
+        if result.failed == 0:
+            print_success(
+                f"Conversion complete: {result.successful}/{result.total_files} files "
+                f"in {result.duration_seconds:.1f}s"
+            )
+        else:
+            print_warning(
+                f"Conversion complete with errors: {result.successful} succeeded, "
+                f"{result.failed} failed in {result.duration_seconds:.1f}s"
+            )
+        
+        if result.summary_path:
+            print_info(f"Summary report: {result.summary_path}")
+            
+    except KeyboardInterrupt:
+        print_warning("\nConversion cancelled by user")
+        raise typer.Exit(1)
+    except Exception as e:
+        print_error(f"Conversion failed: {e}")
+        raise typer.Exit(1)
 
 
 if __name__ == "__main__":

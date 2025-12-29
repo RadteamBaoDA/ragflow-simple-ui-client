@@ -11,8 +11,8 @@ from typing import TYPE_CHECKING, Any
 from loguru import logger
 
 from ragflow_client.core.bus import Event, EventPayload
-from ragflow_client.features.doc_converter.processor import DocumentProcessor
-from ragflow_client.features.doc_converter.schema import (
+from ragflow_client.features.doc_converter.worker.processor import DocumentProcessor
+from ragflow_client.features.doc_converter.schema.schema import (
     ConversionJob,
     JobProgress,
     JobResult,
